@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Staying Kind Online: Cyberbullying (Primary)</title>
+  <style>
+  /* --- NEW LOOK: Playful pastel, paper-cards, bold outlines --- */
+  :root{
+    --bg:#fff9f2; --bg2:#fef6ff; --ink:#1f2d3d; --muted:#5b6b7a;
+    --primary:#ff7aa2; --sky:#5ac8fa; --mint:#5ee7c2; --sun:#ffd166; --grape:#8a7ff6;
+    --card:#ffffff; --stroke:#151a22; --shadow: 0 6px 0 #151a22;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0f18; --bg2:#0f1320; --ink:#f3f6ff; --muted:#b7c0cd;
+    --primary:#ff97b7; --sky:#7ad8ff; --mint:#87f0d4; --sun:#ffd98a; --grape:#a39bff;
+    --card:#0f1729; --stroke:#000; --shadow: 0 6px 0 rgba(0,0,0,.6);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{
+    font-family: ui-rounded, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background:
+      radial-gradient(18px 18px at 20% 10%, rgba(255,122,162,.18) 0 30%, transparent 31%),
+      radial-gradient(18px 18px at 80% 0%, rgba(90,200,250,.16) 0 30%, transparent 31%),
+      linear-gradient(180deg, var(--bg), var(--bg2));
+    color:var(--ink);
+  }
+  header{
+    position:sticky;top:0;z-index:10;border-bottom:3px solid var(--stroke);
+    background:linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.75));
+    backdrop-filter:saturate(1.1) blur(6px);
+  }
+  .wrap{max-width:1100px;margin:auto;padding:1rem}
+  nav{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;justify-content:flex-end}
+  nav a{
+    color:var(--ink); text-decoration:none; font-weight:800; letter-spacing:.2px;
+    background:var(--sun); padding:.55rem .8rem; border-radius:999px;
+    border:3px solid var(--stroke); box-shadow:var(--shadow);
+  }
+  nav a:nth-child(2){background:var(--mint)}
+  nav a:nth-child(3){background:var(--sky)}
+  nav a:nth-child(4){background:var(--grape); color:#fff}
+  nav a:nth-child(5){background:var(--primary)}
+  nav a:hover{transform:translateY(-2px)}
+  h1{font-size:clamp(1.8rem,3.2vw,2.6rem);margin:.2rem 0}
+  h1 .ribbon{display:inline-block; padding:.25rem .6rem; background:var(--primary); color:#fff; border:3px solid var(--stroke); border-radius:10px; box-shadow:var(--shadow)}
+  .muted{color:var(--muted)}
+
+  /* Cards now look like paper with bold outline */
+  .card{
+    background:var(--card);
+    border:3px solid var(--stroke);
+    border-radius:20px;
+    padding:1rem; box-shadow:var(--shadow)
+  }
+  .badge{display:inline-block;background:var(--sky);padding:.25rem .6rem;border-radius:10px;border:3px solid var(--stroke);font-weight:900}
+  .btn{appearance:none;cursor:pointer;font-weight:900;letter-spacing:.2px;border-radius:12px;border:3px solid var(--stroke);padding:.65rem .9rem;background:#fff;box-shadow:var(--shadow)}
+  .btn.primary{background:var(--mint)}
+  .btn.link{background:var(--sun)}
+  .controls{display:flex;gap:.5rem;flex-wrap:wrap}
+
+  .grid{display:grid;gap:1rem}
+  @media(min-width:900px){.grid-2{grid-template-columns:1fr 1fr}.grid-3{grid-template-columns:repeat(3,1fr)}}
+
+  /* Resources as tiles */
+  .resource{display:grid;grid-template-columns:56px 1fr;gap:.8rem;align-items:center}
+  .icon{width:48px;height:48px;display:grid;place-items:center;border-radius:12px;border:3px solid var(--stroke);box-shadow:var(--shadow);background:var(--sun)}
+  .resource:nth-child(2) .icon{background:var(--mint)}
+  .resource:nth-child(3) .icon{background:var(--sky)}
+  .resource:nth-child(4) .icon{background:var(--primary); color:#fff}
+  .resource a{font-weight:800;color:#0b3a63}
+
+  /* Activity areas: dotted paper */
+  .dd-area{min-height:180px;border:3px dashed var(--stroke);border-radius:16px;padding:1rem;background:repeating-linear-gradient(45deg,rgba(0,0,0,.04) 0 8px, transparent 8px 16px)}
+  .draggable{padding:.6rem .7rem;border-radius:12px;background:#fff;border:3px solid var(--stroke);box-shadow:var(--shadow);cursor:grab}
+
+  /* Quiz progress */
+  .progress{height:12px;border-radius:999px;border:3px solid var(--stroke);background:#fff;overflow:hidden}
+  #bar{height:100%;width:0%;background:repeating-linear-gradient(90deg,var(--primary) 0 12px, var(--sky) 12px 24px)}
+  .quiz-q{border-top:3px dotted var(--stroke);padding-top:.75rem;margin-top:.75rem}
+  .score{font-weight:900}
+
+  footer{margin-top:2rem;padding:2rem 0;border-top:3px solid var(--stroke)}
+  details>summary{cursor:pointer;font-weight:900}
+
+  /* Columns */
+  .columns{display:grid;gap:1rem}
+  @media(min-width:900px){.columns{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="sparkle" style="top:80px;left:10%;">✨</div>
+<div class="sparkle float" style="top:220px;right:8%;">🛡️</div>
+<div class="sparkle" style="bottom:140px;left:5%;">💬</div>
+<header>
+  <div class="wrap">
+    <div class="grid grid-2" role="navigation" aria-label="Main">
+      <div>
+        <h1><span class="grad">Staying Kind Online</span> 🛡️ — Cyberbullying (Primary)</h1>
+        <p class="muted">LMS-style single page • Target audience: <strong>Primary (Years 4–6)</strong> • Topic: <strong>Cyberbullying</strong></p>
+      </div>
+      <nav aria-label="Section navigation" class="controls" style="justify-content:flex-end;align-items:center">
+        <a href="#video">1. Video</a>
+        <a href="#resources">2. Resources</a>
+        <a href="#activity">3. Interactive</a>
+        <a href="#quiz">4. Quiz</a>
+        <a href="#teacher">Teacher</a>
+        <button id="toggleTheme" class="btn" aria-pressed="false" title="Toggle light/dark">🌓 Theme</button>
+        <label class="pill kbox" title="Increase text size"><input id="fs" type="range" min="90" max="120" value="100" aria-label="Font size"/> A↔A</label>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="card" aria-labelledby="aims">
+    <h2 id="aims">Learning Intentions & Success Criteria</h2>
+    <div class="grid grid-3">
+      <div class="card">
+        <span class="badge">Learning Intention</span>
+        <p>We are learning what <strong>cyberbullying</strong> is and safe ways to <strong>respond</strong> and <strong>report</strong> online harm.</p>
+      </div>
+      <div class="card">
+        <span class="badge">Success Criteria</span>
+        <ul>
+          <li>I can recognise examples of cyberbullying.</li>
+          <li>I can use the <strong>4Rs</strong>: <em>Record (screenshot), Report, Reach out, and Refrain</em> from responding.</li>
+          <li>I know where to get help (trusted adult, school, platform tools, <em>eSafety</em>).</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="badge">Wellbeing</span>
+        <p>We practise <strong>kindness</strong> and stand up as <strong>upstanders</strong>, not bystanders.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1. Educational Video -->
+  <section id="video" class="card" aria-labelledby="video-h">
+    <h2 id="video-h">1) Educational Video (≤ 3 minutes)</h2>
+    <div class="columns">
+      <div>
+        <video id="lessonVideo" width="100%" controls aria-describedby="vidcap" preload="metadata">
+          <source src="lesson intro.mp4" type="video/mp4">
+        </video>
+              </div>
+      </div>
+      <div class="card" aria-live="polite">
+        <p class="badge">Key talking points</p>
+        <ol>
+          <li><strong>What is cyberbullying?</strong> Unkind or harmful behaviour done <em>online</em> on purpose.</li>
+          <li><strong>Examples:</strong> mean messages, excluding in group chats, posting hurtful pictures, fake accounts.</li>
+          <li><strong>4Rs:</strong> <em>Record</em> (screenshot), <em>Report</em> (site/app & school), <em>Reach out</em> (trusted adult / Kids Helpline), <em>Refrain</em> (don’t reply).</li>
+          <li><strong>Be an upstander:</strong> check on the person, don’t forward, report together.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Curated Learning Resources -->
+  <section id="resources" class="card" aria-labelledby="res-h">
+    <h2 id="res-h">2) Curated Learning Resources (Max 4)</h2>
+    <div class="grid grid-2">
+      <div class="resource card">
+        <div class="icon" aria-hidden="true">🔎</div>
+        <div>
+          <strong>eSafety: Cyberbullying — what to do</strong>
+          <p class="muted">Official Australian guidance for young people on reporting and taking care of yourself.</p>
+          <p><a href="https://www.esafety.gov.au/key-topics/cyberbullying" target="_blank" rel="noopener">Open resource</a></p>
+        </div>
+      </div>
+      <div class="resource card">
+        <div class="icon" aria-hidden="true">📣</div>
+        <div>
+          <strong>Report to eSafety (what you can report)</strong>
+          <p class="muted">Explains when and how to escalate serious cyberbullying in Australia.</p>
+          <p><a href="https://www.esafety.gov.au/report/what-you-can-report-to-esafety" target="_blank" rel="noopener">Open resource</a></p>
+        </div>
+      </div>
+      <div class="resource card">
+        <div class="icon" aria-hidden="true">📄</div>
+        <div>
+          <strong>Bullying. No Way! – Cyberbullying (Primary factsheet)</strong>
+          <p class="muted">Age-appropriate tips and examples for primary students.</p>
+          <p><a href="https://bullyingnoway.gov.au/resource/fact-sheets/documents/primary-school-students-cyberbullying-fact-sheet.pdf" target="_blank" rel="noopener">Open resource</a></p>
+        </div>
+      </div>
+      <div class="resource card">
+        <div class="icon" aria-hidden="true">💬</div>
+        <div>
+          <strong>Kids Helpline – Cyberbullying</strong>
+          <p class="muted">24/7 support for kids with tips and ways to get help.</p>
+          <p><a href="https://kidshelpline.com.au/cyberbullying" target="_blank" rel="noopener">Open resource</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Interactive Learning Activity -->
+  <section id="activity" class="card" aria-labelledby="act-h">
+    <h2 id="act-h">3) Digital Interactive Activity — Upstander Sort</h2>
+    <p>Drag each card into the correct bucket. Use <kbd>Tab</kbd> / <kbd>Enter</kbd> to move and place if using a keyboard.</p>
+
+    <div class="columns" role="application" aria-roledescription="drag and drop activity">
+      <div class="dd-area" id="pool" aria-label="Card pool" tabindex="0"></div>
+      <div class="columns">
+        <div>
+          <h3 class="badge">Helpful (Upstander)</h3>
+          <div class="dd-area" id="helpful" aria-label="Helpful actions" tabindex="0"></div>
+        </div>
+        <div>
+          <h3 class="badge">Unhelpful (Bystander)</h3>
+          <div class="dd-area" id="unhelpful" aria-label="Unhelpful actions" tabindex="0"></div>
+        </div>
+      </div>
+    </div>
+    <div class="controls" style="margin-top:1rem">
+      <button id="checkDD" class="btn primary">Check my answers</button>
+      <button id="resetDD" class="btn">Reset</button>
+      <span id="ddResult" class="pill" aria-live="polite"></span>
+    </div>
+  </section>
+
+  <!-- 4. Knowledge Assessment (MCQ) -->
+  <section id="quiz" class="card" aria-labelledby="quiz-h">
+    <h2 id="quiz-h">4) Knowledge Check — 7 Multiple‑Choice Questions</h2>
+    <div class="progress" aria-label="Quiz progress"><div id="bar"></div></div>
+    <form id="quizForm">
+      <div class="quiz-q">
+        <p><strong>1.</strong> Which is <em>cyberbullying</em>?</p>
+        <label><input type="radio" name="q1" value="a"> Sending a kind message to welcome someone to a group chat.</label><br>
+        <label><input type="radio" name="q1" value="b"> Posting a hurtful meme of a classmate on purpose.</label><br>
+        <label><input type="radio" name="q1" value="c"> Asking a teacher for help with a maths problem.</label>
+      </div>
+      <div class="quiz-q">
+        <p><strong>2.</strong> What is the <strong>first</strong> R in the 4Rs?</p>
+        <label><input type="radio" name="q2" value="a"> React</label><br>
+        <label><input type="radio" name="q2" value="b"> Record (take a screenshot)</label><br>
+        <label><input type="radio" name="q2" value="c"> Remove the app</label>
+      </div>
+      <div class="quiz-q">
+        <p><strong>3.</strong> If someone is being mean in a game chat, what should you do?</p>
+        <label><input type="radio" name="q3" value="a"> Be mean back so they stop.</label><br>
+        <label><input type="radio" name="q3" value="b"> Tell a trusted adult and use the report tools.</label><br>
+        <label><input type="radio" name="q3" value="c"> Share it with more people.</label>
+      </div>
+      <div class="quiz-q">
+        <p><strong>4.</strong> Who can help if the platform doesn’t remove serious cyberbullying?</p>
+        <label><input type="radio" name="q4" value="a"> eSafety (Australia)</label><br>
+        <label><input type="radio" name="q4" value="b"> A random person online</label><br>
+        <label><input type="radio" name="q4" value="c"> No one</label>
+      </div>
+      <div class="quiz-q">
+        <p><strong>5.</strong> Which is an <em>upstander</em> action?</p>
+        <label><input type="radio" name="q5" value="a"> Ignore your friend and hope it stops.</label><br>
+        <label><input type="radio" name="q5" value="b"> Check on the person and help them report.</label><br>
+        <label><input type="radio" name="q5" value="c"> Share the post to show others.</label>
+      </div>
+      <div class="quiz-q">
+        <p><strong>6.</strong> Why is it best <em>not</em> to reply to hurtful messages?</p>
+        <label><input type="radio" name="q6" value="a"> It can make things worse and gives the bully attention.</label><br>
+        <label><input type="radio" name="q6" value="b"> Because replying costs money.</label><br>
+        <label><input type="radio" name="q6" value="c"> You might get banned from school Wi‑Fi.</label>
+      </div>
+      <div class="quiz-q">
+        <p><strong>7.</strong> Which step helps you keep evidence?</p>
+        <label><input type="radio" name="q7" value="a"> Delete everything immediately.</label><br>
+        <label><input type="radio" name="q7" value="b"> Screenshot or save the messages.</label><br>
+        <label><input type="radio" name="q7" value="c"> Log out and never log in again.</label>
+      </div>
+      <div class="controls" style="margin-top:1rem">
+        <button type="button" class="btn primary" id="submitQuiz">Submit</button>
+        <button type="reset" class="btn" id="resetQuiz">Clear</button>
+        <span class="pill">Score: <span id="score" class="score">0/7</span></span>
+        <span id="quizMsg" class="pill" aria-live="polite"></span>
+      </div>
+    </form>
+  </section>
+
+  <!-- Teacher / Reflection -->
+  <section id="teacher" class="card" aria-labelledby="teach-h">
+    <h2 id="teach-h">Teacher Notes & Reflection (for submission)</h2>
+    <details open>
+      <summary><strong>Target Audience</strong></summary>
+      <p>Primary (Years 4–6), mixed-ability, inclusive classroom. Lesson duration: ~30–40 minutes plus time to film/insert the 3‑minute intro video.</p>
+    </details>
+    <details>
+      <summary><strong>Video script (≤ 3 minutes)</strong></summary>
+      <ol>
+        <li><em>Hook (0:00–0:20)</em> — “Thumbs up if you’ve used a group chat or game chat. Today we’ll learn how to stay kind online.”</li>
+        <li><em>Define (0:20–0:55)</em> — Simple definition of cyberbullying with 2–3 examples (mean posts, exclusion, fake accounts).</li>
+        <li><em>4Rs (0:55–2:10)</em> — Record (screenshot), Report (in‑app; then school; then eSafety if serious), Reach out (trusted adult/Kids Helpline 1800 55 1800), Refrain (don’t reply).</li>
+        <li><em>Upstander (2:10–2:40)</em> — Check on the person, don’t forward, report together.</li>
+        <li><em>Outro (2:40–3:00)</em> — “You deserve to feel safe online. Let’s practise with a quick activity!”</li>
+      </ol>
+    </details>
+    <details>
+      <summary><strong>Storyboard (suggested B‑roll)</strong></summary>
+      <ul>
+        <li>Animated chat bubbles (kind vs unkind), device close‑ups, on‑screen 4Rs icons, quick demo of platform report button (generic UI).</li>
+      </ul>
+    </details>
+    <details>
+      <summary><strong>Design decisions (UDL & accessibility)</strong></summary>
+      <ul>
+        <li>Keyboard‑operable drag‑and‑drop; captions track; theme and font‑size controls.</li>
+        <li>Plain‑language headings, icons with text, chunked steps, and immediate feedback.</li>
+      </ul>
+    </details>
+    <details>
+      <summary><strong>Professional learning & improvement plan</strong></summary>
+      <p><em>Strengths:</em> clear sequencing (video → resources → practice → quiz), Australian help pathways, inclusive design. <em>Challenges:</em> keeping resources current; ensuring culturally responsive examples.
+      </p>
+      <p><em>Opportunities:</em> complete an eSafety teacher PD module; trial lesson with peer feedback.</p>
+      <p><em>2‑week enhancement plan:</em> Week 1 — film student‑friendly video with captions; collect student voice. Week 2 — iterate activities for local contexts; add translations and printable supports.</p>
+    </details>
+  </section>
+
+  <footer class="muted">
+    <p>© Your Name, 2025 • Lesson for assessment purposes. External links belong to their respective owners.</p>
+  </footer>
+</main>
+
+<div role="status" aria-live="polite" class="toast" id="toast">Great job! ✅</div>
+
+<script>
+// Theme & font scaling
+const root=document.documentElement; const tBtn=document.getElementById('toggleTheme');
+let light=false; tBtn.addEventListener('click',()=>{light=!light;document.body.dataset.theme=light?'light':'';tBtn.setAttribute('aria-pressed', String(light));});
+const fs=document.getElementById('fs'); fs.addEventListener('input',e=>{root.style.fontSize=e.target.value+'%'});
+
+// Drag & Drop data
+const cards=[
+  {id:'c1', text:'Take a screenshot (record evidence).', correct:'helpful'},
+  {id:'c2', text:'Send a mean reply back.', correct:'unhelpful'},
+  {id:'c3', text:'Use the in‑app report/block tools.', correct:'helpful'},
+  {id:'c4', text:'Tell a trusted adult or teacher.', correct:'helpful'},
+  {id:'c5', text:'Share the post so more people see it.', correct:'unhelpful'},
+  {id:'c6', text:"Report serious cases to eSafety in Australia.", correct:'helpful'}
+];
+const pool=document.getElementById('pool'); const helpful=document.getElementById('helpful'); const unhelpful=document.getElementById('unhelpful');
+function renderPool(){ pool.innerHTML=''; cards.forEach(c=>{ const el=document.createElement('div'); el.className='draggable'; el.textContent=c.text; el.tabIndex=0; el.setAttribute('role','button'); el.dataset.id=c.id; el.draggable=true; el.addEventListener('dragstart',dragStart); el.addEventListener('keydown',keyDrag); pool.appendChild(el); });}
+function allowDrop(e){e.preventDefault();}
+function drop(e){e.preventDefault(); const id=e.dataTransfer.getData('text/plain'); const el=document.querySelector(`[data-id="${id}"]`); if(el && e.currentTarget){e.currentTarget.appendChild(el);} }
+function dragStart(e){ e.dataTransfer.setData('text/plain', e.target.dataset.id); }
+function keyDrag(e){ if(e.key==='Enter' || e.key===' '){ const target = document.activeElement; // toggle to next area
+   const parent=target.parentElement.id; if(parent==='pool'){ helpful.appendChild(target); } else if(parent==='helpful'){ unhelpful.appendChild(target);} else { pool.appendChild(target);} }
+}
+[pool, helpful, unhelpful].forEach(area=>{area.addEventListener('dragover',allowDrop); area.addEventListener('drop',drop);});
+renderPool();
+
+// Check answers
+const ddResult=document.getElementById('ddResult'); const toast=document.getElementById('toast');
+document.getElementById('checkDD').addEventListener('click',()=>{
+  let correct=0; cards.forEach(c=>{ const el=document.querySelector(`[data-id="${c.id}"]`); const parent = el?.parentElement?.id; if(parent===c.correct) correct++; });
+  ddResult.textContent=`You placed ${correct}/${cards.length} correctly.`;
+  if(correct===cards.length){ toast.style.display='block'; setTimeout(()=>toast.style.display='none',1800); }
+});
+document.getElementById('resetDD').addEventListener('click',()=>{renderPool(); ddResult.textContent='';});
+
+// Quiz logic
+const answers={q1:'b', q2:'b', q3:'b', q4:'a', q5:'b', q6:'a', q7:'b'};
+const scoreEl=document.getElementById('score'); const quizMsg=document.getElementById('quizMsg');
+const bar=document.getElementById('bar');
+function answeredCount(){
+  let c=0; for(const k in answers){ const chosen=[...document.querySelectorAll(`input[name="${k}"]`)].find(x=>x.checked); if(chosen) c++; } return c;
+}
+function updateProgress(){ const total=Object.keys(answers).length; const pct=Math.round(100*answeredCount()/total); bar.style.width=pct+'%'; }
+
+document.getElementById('quizForm').addEventListener('change',updateProgress);
+
+function confetti(){
+  const n=80; for(let i=0;i<n;i++){ const p=document.createElement('div'); p.style.position='fixed'; p.style.left=Math.random()*100+'vw'; p.style.top='-10px'; p.style.width='8px'; p.style.height='8px'; p.style.borderRadius='2px'; p.style.background=`hsl(${Math.random()*360},90%,70%)`; p.style.opacity='.9'; p.style.zIndex=9999; p.style.transform=`translateY(0)`; document.body.appendChild(p);
+    const duration=1200+Math.random()*1200; const dx=(Math.random()*2-1)*100; p.animate([{transform:`translate(${dx}px, 0)`},{transform:`translate(${dx}px, ${window.innerHeight+40}px)`}], {duration, easing:'cubic-bezier(.2,.6,.2,1)'}).onfinish=()=>p.remove(); }
+}
+
+document.getElementById('submitQuiz').addEventListener('click',()=>{
+  let score=0; let total=Object.keys(answers).length; let allAnswered=true;
+  for(const k in answers){ const sel=[...document.querySelectorAll(`input[name="${k}"]`)]; const chosen=sel.find(x=>x.checked); if(!chosen){allAnswered=false; continue;} if(chosen.value===answers[k]) score++; }
+  scoreEl.textContent=`${score}/${total}`;
+  quizMsg.textContent = allAnswered ? (score===total? 'Perfect! ⭐': score>=5? 'Nice work! Keep practising the 4Rs.':'Let\'s review the video and try again.') : 'Please answer all questions.';
+  if(allAnswered && score===total) confetti();
+});
+
+document.getElementById('resetQuiz').addEventListener('click',()=>{scoreEl.textContent='0/7'; quizMsg.textContent=''; bar.style.width='0%';});
+</script>
+</body>
+</html>
